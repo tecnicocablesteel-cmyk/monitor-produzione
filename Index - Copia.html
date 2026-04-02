@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="60">
+  <title>Ordini Produzione</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #ffffff;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background:
+        linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+    }
+
+    .header {
+      height: 72px;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(2, 6, 23, 0.95);
+      border-bottom: 3px solid #22c55e;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 18px;
+      color: #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+      animation: pulse 1.8s infinite;
+      flex: 0 0 auto;
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1); opacity: 1; }
+      50%  { transform: scale(1.15); opacity: 0.65; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .board {
+      flex: 1;
+      min-height: 0;
+      padding: 10px;
+    }
+
+    .frame-shell {
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+      position: relative;
+    }
+
+    .frame-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-top: 5px solid #22c55e;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .iframe-wrap {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      background: #ffffff;
+    }
+
+    iframe {
+      border: none;
+      width: 138vw;
+      height: calc(100vh - 72px - 20px);
+      transform: scale(1.18);
+      transform-origin: top left;
+      background: #ffffff;
+    }
+
+    .footer-note {
+      position: absolute;
+      right: 16px;
+      bottom: 10px;
+      z-index: 3;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.82);
+      color: #cbd5e1;
+      font-size: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    @media (max-width: 1400px) {
+      .title {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+      }
+
+      .header-right {
+        font-size: 15px;
+      }
+
+      iframe {
+        width: 145vw;
+        transform: scale(1.12);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="header-left">
+        <h1 class="title">ORDINI PRODUZIONE</h1>
+        <p class="subtitle">Monitor aggiornato automaticamente da Excel Online</p>
+      </div>
+
+      <div class="header-right">
+        <div class="status-dot"></div>
+        <div id="lastUpdate">Aggiornamento automatico ogni 60 secondi</div>
+        <div id="clock"></div>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="frame-shell">
+        <div class="iframe-wrap">
+          <iframe
+            src="https://cablesteelgroup-my.sharepoint.com/personal/tecnico_cablesteel_it/_layouts/15/Doc.aspx?sourcedoc={cdb92c52-f8aa-4bf1-97f9-7e727736696d}&action=embedview&wdSheet=WEB&activeCell=WEB!A1&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True">
+          </iframe>
+          <div class="footer-note">Vista live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function aggiornaClock() {
+      const now = new Date();
+      const data = now.toLocaleDateString("it-IT");
+      const ora = now.toLocaleTimeString("it-IT", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+      document.getElementById("clock").textContent = data + " - " + ora;
+    }
+
+    aggiornaClock();
+    setInterval(aggiornaClock, 1000);
+  </script>
+</body>
+</html>

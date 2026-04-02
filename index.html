@@ -7,9 +7,7 @@
   <title>Ordini Produzione</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
@@ -19,11 +17,7 @@
       overflow: hidden;
       font-family: Arial, sans-serif;
       background: #0b1220;
-      color: #ffffff;
-    }
-
-    body {
-      background: linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+      color: white;
     }
 
     .page {
@@ -34,199 +28,135 @@
     }
 
     .header {
-      height: 74px;
-      min-height: 74px;
+      height: 70px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 22px;
-      background: rgba(2, 6, 23, 0.96);
+      align-items: center;
+      padding: 0 20px;
+      background: #020617;
       border-bottom: 3px solid #22c55e;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .title {
-      margin: 0;
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      line-height: 1;
-    }
-
-    .subtitle {
-      margin: 6px 0 0;
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1;
+      font-size: 28px;
+      font-weight: bold;
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 17px;
-      color: #e2e8f0;
-      white-space: nowrap;
+      gap: 15px;
+      font-size: 16px;
     }
 
     .status-dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.85);
-      animation: pulse 1.8s infinite;
-      flex: 0 0 auto;
+      animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.65; }
-      100% { transform: scale(1); opacity: 1; }
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
 
-    .board {
+    .content {
       flex: 1;
-      min-height: 0;
-      padding: 8px;
-    }
-
-    .frame-shell {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
       overflow: hidden;
-      background: #ffffff;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-      position: relative;
-    }
-
-    .frame-shell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-top: 4px solid #22c55e;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .iframe-wrap {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      position: relative;
-      background: #ffffff;
     }
 
     iframe {
       border: none;
-      background: #ffffff;
+      width: 140vw;
+      height: 100%;
+      transform: scale(1.18);
       transform-origin: top left;
-      width: 136vw;
-      height: calc(100vh - 74px - 16px);
-      transform: scale(1.16);
+      background: white;
     }
 
-    .footer-note {
-      position: absolute;
-      right: 14px;
-      bottom: 10px;
-      z-index: 3;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.84);
-      color: #cbd5e1;
-      font-size: 12px;
-      backdrop-filter: blur(4px);
+    #fallback {
+      display: none;
+      text-align: center;
+      padding-top: 40px;
+      font-size: 24px;
     }
 
-    @media (max-width: 1400px) {
-      .title {
-        font-size: 25px;
-      }
-
-      .subtitle {
-        font-size: 12px;
-      }
-
-      .header-right {
-        font-size: 14px;
-      }
-
-      iframe {
-        width: 142vw;
-        transform: scale(1.10);
-      }
-    }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="header">
-      <div class="header-left">
-        <h1 class="title">ORDINI PRODUZIONE</h1>
-        <p class="subtitle">Vista live collegata a Excel Online - foglio WEB</p>
-      </div>
 
-      <div class="header-right">
-        <div class="status-dot"></div>
-        <div id="countdown">Refresh tra 60s</div>
-        <div id="clock"></div>
-      </div>
-    </div>
+<div class="page">
 
-    <div class="board">
-      <div class="frame-shell">
-        <div class="iframe-wrap">
-          <iframe
-            src="https://cablesteelgroup-my.sharepoint.com/personal/tecnico_cablesteel_it/_layouts/15/Doc.aspx?sourcedoc={cdb92c52-f8aa-4bf1-97f9-7e727736696d}&action=embedview&wdSheet=WEB&activeCell=WEB!A1&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&cache=none">
-          </iframe>
-          <div class="footer-note">Aggiornamento live</div>
-        </div>
-      </div>
+  <div class="header">
+    <div class="title">ORDINI PRODUZIONE</div>
+
+    <div class="header-right">
+      <div class="status-dot"></div>
+      <div id="countdown">Refresh tra 60s</div>
+      <div id="clock"></div>
     </div>
   </div>
 
-  <script>
-    function aggiornaClock() {
-      const now = new Date();
-      const data = now.toLocaleDateString("it-IT");
-      const ora = now.toLocaleTimeString("it-IT", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-      });
-      document.getElementById("clock").textContent = data + " - " + ora;
+  <div class="content">
+
+    <div id="fallback">
+      Caricamento dati...
+    </div>
+
+    <iframe
+      id="excelFrame"
+      src="https://cablesteelgroup-my.sharepoint.com/personal/tecnico_cablesteel_it/_layouts/15/Doc.aspx?sourcedoc={cdb92c52-f8aa-4bf1-97f9-7e727736696d}&action=embedview&wdSheet=WEB&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True">
+    </iframe>
+
+  </div>
+
+</div>
+
+<script>
+  // ORARIO
+  function aggiornaClock() {
+    const now = new Date();
+    const ora = now.toLocaleTimeString("it-IT");
+    document.getElementById("clock").textContent = ora;
+  }
+
+  // COUNTDOWN
+  let secondi = 60;
+
+  function aggiornaCountdown() {
+    secondi--;
+
+    if (secondi <= 0) secondi = 60;
+
+    let testo = "Refresh tra " + secondi + "s";
+
+    if (secondi <= 10) {
+      testo += " ⚠️";
     }
 
-    let secondi = 60;
+    document.getElementById("countdown").textContent = testo;
+  }
 
-    function aggiornaCountdown() {
-      secondi--;
+  // FALLBACK SAMSUNG
+  setTimeout(function() {
+    let iframe = document.getElementById("excelFrame");
 
-      if (secondi <= 0) {
-        secondi = 60;
-      }
-
-      let testo = "Refresh tra " + secondi + "s";
-
-      if (secondi <= 10) {
-        testo += " ⚠️";
-      }
-
-      document.getElementById("countdown").textContent = testo;
+    try {
+      iframe.contentWindow.location.href;
+    } catch(e) {
+      document.getElementById("fallback").style.display = "block";
+      window.location.href = iframe.src;
     }
+  }, 3000);
 
-    aggiornaClock();
-    setInterval(aggiornaClock, 1000);
-    setInterval(aggiornaCountdown, 1000);
-  </script>
+  aggiornaClock();
+  setInterval(aggiornaClock, 1000);
+  setInterval(aggiornaCountdown, 1000);
+</script>
+
 </body>
 </html>
